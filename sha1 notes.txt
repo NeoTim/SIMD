@@ -1,0 +1,14 @@
+$ ../run/john --format=raw-sha1 --test
+Benchmarking: Raw-SHA1 [SHA1 256/256 AVX2 8x]... DONE
+Raw:	38223K c/s real, 38223K c/s virtual
+
+JtR can do >= 38 million SHA-1 iterations per core on a i5-6500 CPU.
+
+We need to do (2 ^ 32) * 3 SHA-1 operations in total in the `algorithm`.
+
+So the total time needed to exhaust this keyspace is ~340 seconds on a single
+core. We can reduce this to 85 seconds by using all the 4 cores.
+
+JtR's SHA1 and SHA512 code is pretty optimal,
+
+https://www.nayuki.io/page/lowest-sha512-value-by-brute-force (used this to confirm)
